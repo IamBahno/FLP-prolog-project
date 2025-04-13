@@ -2,7 +2,7 @@
 TARGET = flp24-log
 
 # Source files
-SOURCES = main.pl input2.pl
+SOURCES = main.pl input2.pl rotations.pl
 
 # Entry point
 ENTRY = main

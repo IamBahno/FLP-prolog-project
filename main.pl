@@ -52,6 +52,15 @@ solved_cube(cube(F,R,B,L,U,D)) :-
 
 main :- 
 	parse_input(Cube),
-	solved_cube(Cube),
-	print_cube(Cube)
+	% solved_cube(Cube),
+	rotate('U',Cube,NewCube),
+	print_cube(NewCube)
     .
+
+
+% The plan is to create a queue, where i will append moves, already done,
+% so i would start with empty list, and first i would i would try all 18, locations, if none of them would solve it,
+% i would add the rotations, ['U','U'','D',...],
+% then i would pop of first, try 18 rotations, if nothing i would append them again, ['U'','D',....'UU','UU'','UD'....]
+% i can add like optimalization that i would i cannot add same rotations behind each other like U and U'
+% or maybe keep list of already visited paths, or cubes itsealf (or hashes of them)
