@@ -76,6 +76,7 @@ rol_3_counter_clockwise([W1,W2,W3,
     .   
 
 % E - Turn the horizontal slice clockwise
+% other way, then on the picture
  rotate('E',cube(
 		[F1,F2,F3,F4,F5,F6,F7,F8,F9],   % Front
 		[R1,R2,R3,R4,R5,R6,R7,R8,R9],   % Right
@@ -95,6 +96,7 @@ rol_3_counter_clockwise([W1,W2,W3,
 	).
     
 % E' - Turn the horizontal slice clockwise
+% other way, then on the picture
  rotate('e',cube(
 		[F1,F2,F3,F4,F5,F6,F7,F8,F9],   % Front
 		[R1,R2,R3,R4,R5,R6,R7,R8,R9],   % Right
@@ -116,6 +118,7 @@ rol_3_counter_clockwise([W1,W2,W3,
 
 
 % D - Turn the bottom (down) face clockwise
+% other way, then on the picture
  rotate('D',cube(
 		[F1,F2,F3,F4,F5,F6,A1,A2,A3],   % Front
 		[R1,R2,R3,R4,R5,R6,A4,A5,A6],   % Right
@@ -139,6 +142,7 @@ rol_3_counter_clockwise([W1,W2,W3,
 	)  
     .  
 % D' - Turn the bottom (down) face clockwise
+% other way, then on the picture
  rotate('d',cube(
 		[F1,F2,F3,F4,F5,F6,A1,A2,A3],   % Front
 		[R1,R2,R3,R4,R5,R6,A4,A5,A6],   % Right
@@ -159,6 +163,46 @@ rol_3_counter_clockwise([W1,W2,W3,
 		DD    % Down
 	)  
     .  
+
+% L - Turn the left face clockwise (if you were looking from the left)
+rotate('L',cube(
+            [A1,F2,F3,A2,F5,F6,A3,F8,F9],   % Front
+            R,   % Right
+            [A4,B2,B3,A5,B5,B6,A6,B8,B9],   % Back
+            L,   % Left
+            [A7,U2,U3,A8,U5,U6,A9,U8,U9],   % Up
+            [A10,D2,D3,A11,D5,D6,A12,D8,D9]    % Down
+        ), OUT):-
+    rotate_face_clockwise(L,LL),
+    OUT = cube(
+            [A7,F2,F3,A8,F5,F6,A9,F8,F9],   % Front
+            R,   % Right
+            [A10,B2,B3,A11,B5,B6,A12,B8,B9],   % Back
+            LL,   % Left
+            [A4,U2,U3,A5,U5,U6,A6,U8,U9],   % Up
+            [A1,D2,D3,A2,D5,D6,A3,D8,D9]    % Down
+        )
+    .
+% L' - Turn the left face counter clockwise (if you were looking from the left)
+rotate('l',cube(
+            [A1,F2,F3,A2,F5,F6,A3,F8,F9],   % Front
+            R,   % Right
+            [A4,B2,B3,A5,B5,B6,A6,B8,B9],   % Back
+            L,   % Left
+            [A7,U2,U3,A8,U5,U6,A9,U8,U9],   % Up
+            [A10,D2,D3,A11,D5,D6,A12,D8,D9]    % Down
+        ), OUT):-
+    rotate_face_counter_clockwise(L,LL),
+    OUT = cube(
+            [A10,F2,F3,A11,F5,F6,A12,F8,F9],   % Front
+            R,   % Right
+            [A7,B2,B3,A8,B5,B6,A9,B8,B9],   % Back
+            LL,   % Left
+            [A1,U2,U3,A2,U5,U6,A3,U8,U9],   % Up
+            [A4,D2,D3,A5,D5,D6,A6,D8,D9]    % Down
+        )
+    .
+
 
 	% Cube = cube(
 	% 	[F1,F2,F3,F4,F5,F6,F7,F8,F9],   % Front

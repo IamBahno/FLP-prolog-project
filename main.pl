@@ -53,7 +53,7 @@ solved_cube(cube(F,R,B,L,U,D)) :-
 main :- 
 	parse_input(Cube),
 	% solved_cube(Cube),
-	rotate('D',Cube,NewCube),
+	rotate('l',Cube,NewCube),
 	print_cube(NewCube)
     .
 
