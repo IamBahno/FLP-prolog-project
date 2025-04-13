@@ -203,6 +203,45 @@ rotate('l',cube(
         )
     .
 
+% R - Turn the right face clockwise (if you were looking from the right)
+rotate('R',cube(
+            [F1,F2,A1,F4,F5,A2,F7,F8,A3],   % Front
+            R,   % Right
+            [B1,B2,A4,B4,B5,A5,B7,B8,A6],   % Back
+            L,   % Left
+            [U1,U2,A7,U2,U5,A8,U7,U8,A9],   % Up
+            [D1,D2,A10,D4,D5,A11,D7,D8,A12]    % Down
+        ), OUT):-
+    rotate_face_clockwise(R,RR),
+    OUT = cube(
+            [F1,F2,A10,F4,F5,A11,F7,F8,A12],   % Front
+            RR,   % Right
+            [B1,B2,A7,B4,B5,A8,B7,B8,A9],   % Back
+            L,   % Left
+            [U1,U2,A1,U2,U5,A2,U7,U8,A3],   % Up
+            [D1,D2,A4,D4,D5,A5,D7,D8,A6]    % Down
+        )
+    .
+
+% R' - Turn the right face counter clockwise (if you were looking from the right)
+rotate('r',cube(
+            [F1,F2,A1,F4,F5,A2,F7,F8,A3],   % Front
+            R,   % Right
+            [B1,B2,A4,B4,B5,A5,B7,B8,A6],   % Back
+            L,   % Left
+            [U1,U2,A7,U2,U5,A8,U7,U8,A9],   % Up
+            [D1,D2,A10,D4,D5,A11,D7,D8,A12]    % Down
+        ), OUT):-
+    rotate_face_counter_clockwise(R,RR),
+    OUT = cube(
+            [F1,F2,A7,F4,F5,A8,F7,F8,A9],   % Front
+            RR,   % Right
+            [B1,B2,A10,B4,B5,A11,B7,B8,A12],   % Back
+            L,   % Left
+            [U1,U2,A4,U2,U5,A5,U7,U8,A6],   % Up
+            [D1,D2,A1,D4,D5,A2,D7,D8,A3]    % Down
+        )
+    .
 
 	% Cube = cube(
 	% 	[F1,F2,F3,F4,F5,F6,F7,F8,F9],   % Front
