@@ -365,6 +365,16 @@ rotate('s',cube(
 		[D1,D2,D3,X9,X8,X7,D7,D8,D9]    % Down
 	    )
     .  
+
+% TODO
+% %  B - Turn the back face clockwise (if you are looking from the back)
+% rotate('B',
+
+% TODO
+%  B' - Turn the back face counter clockwise (if you are looking from the back)
+% rotate('b',
+
+
 	% Cube = cube(
 	% 	[F1,F2,F3,F4,F5,F6,F7,F8,F9],   % Front
 	% 	[R1,R2,R3,R4,R5,R6,R7,R8,R9],   % Right
