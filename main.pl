@@ -67,28 +67,29 @@ apply_moves([Move|T], OldCube, NewCube) :-
     apply_moves(T, TmpCube, NewCube).
 
 
-% Generates all sequences (combinations) of moves of given length(depth)
-generate_move_sequences(0, [[]]).
-generate_move_sequences(Depth, Sequences) :-
+
+% Generates move sequence of given length (Depth).
+generate_single_move_sequence(0, []).
+generate_single_move_sequence(Depth, [Move | Rest]) :-
     Depth > 0,
-    PrevDepth is Depth - 1,
-    generate_move_sequences(PrevDepth, PrevSequences),
     moves(Moves),
-    findall([Move|Sequences], (member(Sequences, PrevSequences), member(Move, Moves)), Sequences).
+    member(Move, Moves),
+    PrevDepth is Depth - 1,
+    generate_single_move_sequence(PrevDepth, Rest).
 
-
-% Takes in the initial cube, and max depth
-% For every depth, generate all possible moves orders(Paths)
-% Rotate the initial cube to check all those paths, if any of them is solution, return the path
-% otherwise increase the CurrentDepth
+% % Takes in the initial cube, and max depth
+% % For every depth, generate all possible moves orders(Paths)
+% % Rotate the initial cube to check all those paths, if any of them is solution, return the path
+% % otherwise increase the CurrentDepth
 iterative_deepening_search(Cube, MaxDepth, SolutionPath) :-
     between(0, MaxDepth, CurrentDepth),
-    generate_move_sequences(CurrentDepth, Paths),
-    member(Path, Paths),
+    generate_single_move_sequence(CurrentDepth, Path),
     apply_path_to(Cube, Path, RotatedCube),
+	write(Path),
     ( solved_cube(RotatedCube) ->
         SolutionPath = Path
     ).
+
 
 % Takes in Cube and path (in the right order already),
 % and it prints the cube and rotates it, until it is solved.
