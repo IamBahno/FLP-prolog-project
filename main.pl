@@ -1,3 +1,4 @@
+:- dynamic seen_cube/1.
 
 print_cube(cube(
 		[F1,F2,F3,F4,F5,F6,F7,F8,F9],   % Front
@@ -81,12 +82,18 @@ extend_path(Path, NewPaths) :-
 try_paths([], _, _) :- fail.
 try_paths([Path|Rest], CubeIn, SolvedPath) :-
     apply_path_to(CubeIn, Path, RotatedCube),
-    ( solved_cube(RotatedCube) ->
-        SolvedPath = Path
-    ;
+	( seen_cube(RotatedCube) ->
         try_paths(Rest, CubeIn, SolvedPath)
-    ).
+    ;   assertz(seen_cube(RotatedCube)),
+        ( solved_cube(RotatedCube) ->
+            SolvedPath = Path
+        ;
+            try_paths(Rest, CubeIn, SolvedPath)
+        )
+    )
+	.
 
+% This BFS case catches the first call, where the are none paths yet
 bfs_loop([], Cube, SolvedPath) :-
 	extend_path([], ExtendedPaths),
 	(	try_paths(ExtendedPaths,Cube,SolvedPath)
@@ -95,8 +102,14 @@ bfs_loop([], Cube, SolvedPath) :-
         append([], ExtendedPaths, NewQueue),
         bfs_loop(NewQueue, Cube, SolvedPath)
     ).
-
+% The main bfs loop, takes in, a queue of paths, and the initial loaded cube
+% Pops the first path from the queue, and generate the new 18 paths
+% Check if any of them are solved cube, if so returns the solved path,
+% otherwise append the new paths to the queue, and recursivley calls it self
 bfs_loop([Path|RestQueue], Cube, SolvedPath) :-
+	% write(Path),
+	% write('\n'),
+
     % apply_path_to(Cube, Path, NewCube),
 	extend_path(Path, ExtendedPaths),
 	(	try_paths(ExtendedPaths,Cube,SolvedPath)
@@ -106,30 +119,33 @@ bfs_loop([Path|RestQueue], Cube, SolvedPath) :-
         bfs_loop(NewQueue, Cube, SolvedPath)
     ).
 
+% Takes in Cube and path (in the right order already),
+% and it prints the cube and rotates it, until it is solved.
+print_output(Cube,[]):-print_cube(Cube).
+print_output(Cube,[H|T]):-
+	print_cube(Cube),
+	write('\n'),
+	rotate(H,Cube,RotatedCube),
+	print_output(RotatedCube,T).
+
 main :- 
 	parse_input(Cube),
 
 
     (   solved_cube(Cube) ->
-        write('Cube is already solved.'), nl,
+        % write('Cube is already solved.'), nl,
         print_cube(Cube)
     ;
-        bfs_loop([], Cube, SolvedPath),
-        write('Solved path: '), write(SolvedPath), nl
+        bfs_loop([], Cube, SolvedPath)
+        % write('Solved path: '), write(SolvedPath), nl
     ),
-	apply_path_to(Cube,SolvedPath,CubeOut),
 
+    reverse(SolvedPath, OrderedMoves),
+	print_output(Cube,OrderedMoves)
+	% apply_path_to(Cube,SolvedPath,CubeOut),
 
-	print_cube(CubeOut)
+	% print_cube(CubeOut)
 	.
 
-% The plan is to create a queue, where i will append moves, already done,
-% so i would start with empty list, and first i would i would try all 18, locations, if none of them would solve it,
-% i would add the rotations, ['U','u','D',...],
-% then i would pop of first, try 18 rotations, if nothing i would append them again, ['u','D',....'UU','Uu','UD'....]
-% i can add like optimalization that i would i cannot add same rotations behind each other like U and U'
-% or maybe keep list of already visited paths, or cubes itsealf (or hashes of them)
 
-% TODO printing the between positions
 % TODO testing
-% TODO removing debug prints
