@@ -6,7 +6,7 @@ rotate_face_clockwise([A1,A2,A3,A4,A5,A6,A7,A8,A9],S):-
 rotate_face_counter_clockwise([A1,A2,A3,A4,A5,A6,A7,A8,A9],S):-
     S = [A3,A6,A9,A2,A5,A8,A1,A4,A7].
 
-% perform sort of barrel roll, rotates sandwich layer clockwise, by the center, only the 12  out facing values
+% perform sort of barrel roll, rotates layer clockwise, by the center, only the 12  out facing values
 rol_3_clockwise([W1,W2,W3,
             X1,X2,X3,
             Y1,Y2,Y3,
@@ -16,7 +16,7 @@ rol_3_clockwise([W1,W2,W3,
             Z1,Z2,Z3,
             W1,W2,W3]
         .
-% perform sort of barrel roll, rotates sandwich layer counter clockwise, by the center, only the 12  out facing values
+% perform sort of barrel roll, rotates layer counter clockwise, by the center, only the 12  out facing values
 rol_3_counter_clockwise([W1,W2,W3,
             X1,X2,X3,
             Y1,Y2,Y3,

@@ -55,10 +55,6 @@ solved_cube(cube(F,R,B,L,U,D)) :-
 % all the different moves
 moves(['U','u','D','d','R','r','L','l','F','f','M','m','E','e','S','s','B','b']).
 
-% just reverse the path, and apply the rotations to the Cube
-apply_path_to(CubeIn,Path, CubeOut) :-
-    reverse(Path, OrderedMoves),
-    apply_moves(OrderedMoves, CubeIn, CubeOut).
 
 % Apply first rotation from list, and call itself again, until all the rotations are done
 apply_moves([], Cube, Cube).
@@ -84,8 +80,7 @@ generate_single_move_sequence(Depth, [Move | Rest]) :-
 iterative_deepening_search(Cube, MaxDepth, SolutionPath) :-
     between(0, MaxDepth, CurrentDepth),
     generate_single_move_sequence(CurrentDepth, Path),
-    apply_path_to(Cube, Path, RotatedCube),
-	write(Path),
+    apply_moves(Cube, Path, RotatedCube),
     ( solved_cube(RotatedCube) ->
         SolutionPath = Path
     ).
@@ -108,8 +103,7 @@ main :-
 	iterative_deepening_search(Cube,10,SolutionPath),
 	
 	% Reverse the solution path to the right order
-    reverse(SolutionPath, OrderedMoves),
 
 	% Print the output in correct format
-	print_output(Cube,OrderedMoves)
+	print_output(Cube,SolutionPath)
 	.
