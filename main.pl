@@ -118,6 +118,8 @@ main :-
         write('Solved path: '), write(SolvedPath), nl
     ),
 	apply_path_to(Cube,SolvedPath,CubeOut),
+
+
 	print_cube(CubeOut)
 	.
 
@@ -128,4 +130,6 @@ main :-
 % i can add like optimalization that i would i cannot add same rotations behind each other like U and U'
 % or maybe keep list of already visited paths, or cubes itsealf (or hashes of them)
 
-% TODO finish the B rotations, add B rotatiosn back to the list of moves
+% TODO printing the between positions
+% TODO testing
+% TODO removing debug prints
