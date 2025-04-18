@@ -49,6 +49,7 @@ Technically, I don’t even use a tree structure. Instead, I directly explore al
 - `main.pl` — Contains the main logic for solving the cube, input parsing and output printing.
 - `test_inputs/` — Folder with prepared test input files.
 - `input2.pl` — Library for I/O. 
+- `make` — Makefile
 
 ---
 
@@ -83,4 +84,4 @@ Measured at Merlin
 | 4             | 0m0.332s   | `./flp24-log < test_inputs/4moves.txt > out.txt`         |
 | 5             | 0m2.640s   | `./flp24-log < test_inputs/5moves.txt > out.txt`         |
 | 6             | 1m27.780s  | `./flp24-log < test_inputs/6moves.txt > out.txt`         |
-| 7             | 29m23.544s | `./flp24-log < test_inputs/7moves.txt > out.txt`         |
+| 7             | 31m0.775s | `./flp24-log < test_inputs/7moves.txt > out.txt`         |
