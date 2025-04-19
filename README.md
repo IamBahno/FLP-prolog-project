@@ -82,6 +82,6 @@ Measured at Merlin
 | 2             | 0m0.032   | `./flp24-log < test_inputs/2moves.txt > out.txt`         |
 | 3             | 0m0.044s   | `./flp24-log < test_inputs/3moves.txt > out.txt`         |
 | 4             | 0m0.332s   | `./flp24-log < test_inputs/4moves.txt > out.txt`         |
-| 5             | 0m2.640s   | `./flp24-log < test_inputs/5moves.txt > out.txt`         |
-| 6             | 1m27.780s  | `./flp24-log < test_inputs/6moves.txt > out.txt`         |
+| 5             | 0m3.640s   | `./flp24-log < test_inputs/5moves.txt > out.txt`         |
+| 6             | 2m5.085s  | `./flp24-log < test_inputs/6moves.txt > out.txt`         |
 | 7             | 31m0.775s | `./flp24-log < test_inputs/7moves.txt > out.txt`         |
