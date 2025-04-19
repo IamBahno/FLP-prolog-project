@@ -102,8 +102,6 @@ main :-
 	% find solution
 	iterative_deepening_search(Cube,10,SolutionPath),
 	
-	% Reverse the solution path to the right order
-
-	% Print the output in correct format
+	% Print the output in correct format with the intermediate steps
 	print_output(Cube,SolutionPath)
 	.
