@@ -80,7 +80,7 @@ generate_single_move_sequence(Depth, [Move | Rest]) :-
 iterative_deepening_search(Cube, MaxDepth, SolutionPath) :-
     between(0, MaxDepth, CurrentDepth),
     generate_single_move_sequence(CurrentDepth, Path),
-    apply_moves(Cube, Path, RotatedCube),
+    apply_moves(Path, Cube, RotatedCube),
     ( solved_cube(RotatedCube) ->
         SolutionPath = Path
     ).
