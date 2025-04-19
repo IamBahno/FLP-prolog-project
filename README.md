@@ -49,7 +49,7 @@ Technically, I don’t even use a tree structure. Instead, I directly explore al
 - `main.pl` — Contains the main logic for solving the cube, input parsing and output printing.
 - `test_inputs/` — Folder with prepared test input files.
 - `input2.pl` — Library for I/O. 
-- `make` — Makefile
+- `Makefile` — Makefile
 
 ---
 
